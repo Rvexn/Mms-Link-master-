@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Mms link master  </title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+        body { background-color: #f4f4f4; padding-bottom: 50px; }
+
+        .top-nav {
+            position: sticky; top: 0; background: white; padding: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1); z-index: 100;
+        }
+        .search-box {
+            width: 100%; padding: 12px; border-radius: 30px;
+            border: 1px solid #ddd; background: #f0f0f0; outline: none;
+        }
+
+        #display-area {
+            display: none; padding: 15px; background: white;
+            border-bottom: 5px solid #e0e0e0; animation: fadeIn 0.5s;
+        }
+        .main-card { max-width: 500px; margin: 0 auto; }
+        .img-thumb {
+            width: 100%; aspect-ratio: 16 / 9; 
+            border-radius: 12px; overflow: hidden; background: #eee;
+        }
+        .img-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+        .details { padding: 15px 0; text-align: center; }
+        .details h2 { font-size: 18px; margin-bottom: 12px; color: #1c1e21; }
+
+        .share-section {
+            display: flex; justify-content: center; gap: 20px; margin-bottom: 15px;
+        }
+        .share-btn {
+            width: 45px; height: 45px; border-radius: 50%; display: flex;
+            align-items: center; justify-content: center; cursor: pointer;
+            transition: 0.3s; border: none;
+        }
+        .share-btn svg { width: 24px; height: 24px; fill: white; }
+        
+        .wa { background: #25D366; }
+        .msgr { background: #0084FF; }
+        .cp { background: #333; }
+
+        .btn-open {
+            display: block; width: 100%; padding: 12px;
+            background: #1877f2; color: white; border-radius: 8px;
+            text-decoration: none; font-weight: bold; font-size: 16px;
+        }
+
+        .trending-label { padding: 10px; font-weight: bold; color: #ff4500; font-size: 14px; }
+
+        .photo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 10px; }
+        .grid-item { background: white; border-radius: 10px; overflow: hidden; cursor: pointer; position: relative; }
+        .grid-item p { padding: 8px; font-size: 12px; font-weight: bold; color: #333; }
+        .count-badge { 
+            position: absolute; top: 5px; right: 5px; 
+            background: rgba(0,0,0,0.6); color: white; 
+            padding: 2px 6px; border-radius: 4px; font-size: 10px; 
+        }
+
+        /* --- Naya Section Backup Channels ke liye --- */
+        .backup-section {
+            padding: 20px 10px;
+            text-align: center;
+            background: #fff;
+            margin-top: 10px;
+            border-top: 2px solid #ddd;
+        }
+        .backup-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .channel-btn-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .channel-btn {
+            padding: 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+        .ch1 { background: #e91e63; } /* Pink */
+        .ch2 { background: #9c27b0; } /* Purple */
+        .ch3 { background: #673ab7; } /* Deep Purple */
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body>
+
+<div class="top-nav">
+    <input type="text" class="search-box" id="search" placeholder="Search video..." onkeyup="searchPosts()">
+</div>
+
+<div id="display-area">
+    <div class="main-card">
+        <div class="img-thumb">
+            <img id="view-img" src="" alt="">
+        </div>
+        <div class="details">
+            <h2 id="view-title">Title Here</h2>
+            <div class="share-section">
+                <button class="share-btn wa" onclick="socialShare('wa')">
+                    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 .004 5.411.001 12.045c0 2.121.54 4.191 1.577 6.014L0 24l6.135-1.61a11.771 11.771 0 005.911 1.586h.005c6.635 0 12.045-5.413 12.048-12.048 0-3.212-1.25-6.232-3.52-8.504"/></svg>
+                </button>
+                <button class="share-btn msgr" onclick="socialShare('msgr')">
+                    <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 4.974 0 11.111c0 3.498 1.744 6.614 4.469 8.654V24l4.088-2.242c1.112.309 2.298.474 3.523.474 6.627 0 12-4.974 12-11.111C24 4.974 18.627 0 12 0zm1.291 14.194l-3.147-3.344-6.147 3.344 6.775-7.194 3.23 3.344 6.065-3.344-6.776 7.194z"/></svg>
+                </button>
+                <button class="share-btn cp" onclick="socialShare('cp')">
+                    <svg viewBox="0 0 24 24"><path d="M10.59 13.41c.41.39.41 1.03 0 1.42-.39.39-1.03.39-1.42 0a5.003 5.003 0 010-7.07l3.54-3.54a5.003 5.003 0 017.07 0 5.003 5.003 0 010 7.07l-1.49 1.49c.01-.82-.12-1.64-.4-2.42l.47-.48a2.982 2.982 0 000-4.24 2.982 2.982 0 00-4.24 0l-3.53 3.53a2.982 2.982 0 000 4.24zm2.82-4.24c-.41-.39-.41-1.03 0-1.42.39-.39 1.03-.39 1.42 0a5.003 5.003 0 010 7.07l-3.54 3.54a5.003 5.003 0 01-7.07 0 5.003 5.003 0 010-7.07l1.49-1.49c-.01.82.12 1.64.4 2.42l-.47.48a2.982 2.982 0 000-4.24 2.982 2.982 0 004.24 0l3.53-3.53a2.982 2.982 0 000-4.24z"/></svg>
+                </button>
+            </div>
+            <a id="view-link" href="#" class="btn-open">Open Link </a>
+        </div>
+    </div>
+</div>
+
+<div class="trending-label">🔥 Top 20 Trending Video </div>
+<div class="photo-grid" id="post-container"></div>
+
+<div class="backup-section">
+    <div class="backup-title">📢 Join officeal Backup Channels</div>
+    <div class="channel-btn-container">
+        <a href="https://vairal-tv-channel-231.vercel.app/" class="channel-btn ch1" target="_blank">Public Channel 1</a>
+        <a href="https://vairal-tv-bot.vercel.app/" class="channel-btn ch2" target="_blank">Auto posting bot 2</a>
+        <a href="https://vairal-tv-channel-231.vercel.app/" class="channel-btn ch3" target="_blank"> Officeal insa 3</a>
+    </div>
+</div>
+
+<script>
+    // Aapka constant link
+    const MY_SHARE_LINK = "https://vairal-tv-channel-231.vercel.app/";
+
+    let posts = [
+        { id: 1, img: 'https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg', title: 'Payal gaming video!', link: 'https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw' },
+        { id: 2, img: 'https://i.ibb.co/qMSs5yFy/IMG-20260213-110717.jpg', title: 'Post 2', link: 'https://youtu.be/ho8yHjey-os?si=W0vHkqy9Su8ErOfh' },
+        { id: 3, img: 'https://i.ibb.co/mVVgQkpD/IMG-20260213-110640.jpg', title: 'মহাবন্যার তাণ্ডব! গোপাল ভার', link: 'https://youtu.be/ho8yHjey-os?si=W0vHkqy9Su8ErOfh' },
+        { id: 4, img: 'https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg', title: 'Post 2', link: 'https://youtu.be/ho8yHjey-os?si=W0vHkqy9Su8ErOfh' },
+        { id: 5, img: 'https://i.ibb.co/8nrb2Yvc/IMG-20260212-103959.png', title: 'মহাবন্যার তাণ্ডব! গোপাল ভার', link: 'https://youtu.be/ho8yHjey-os?si=W0vHkqy9Su8ErOfh' },
+        { id: 6, img: 'https://i.ibb.co/cSPqzT30/In-Shot-20260212-103419510.jpg', title: 'Post 2', link: 'https://youtu.be/ho8yHjey-os?si=W0vHkqy9Su8ErOfh' },
+        { id: 7, img: 'https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg', title: 'মহাবন্যার তাণ্ডব! গোপাল ভার', link: 'https://youtu.be/ho8yHjey-os?si=W0vHkqy9Su8ErOfh' },
+        { id: 8, img: 'https://i.ibb.co/BKKMdGs8/In-Shot-20260209-220540287.jpg', title: 'Post 2', link: 'https://youtu.be/ho8yHjey-os?si=W0vHkqy9Su8ErOfh' },
+        { id: 9, img: 'https://i.ibb.co/Mxhz6dtJ/In-Shot-20260212-103613479.jpg', title: 'মহাবন্যার তাণ্ডব! গোপাল ভার', link: 'https://youtu.be/ho8yHjey-os?si=W0vHkqy9Su8ErOfh' },
+        { id: 10, img: 'https://picsum.photos/800/450?2', title: 'Post 2', link: 'https://youtu.be/ho8yHjey-os?si=W0vHkqy9Su8ErOfh' },
+        { id: 11, img: 'https://img.youtube.com/vi/ho8yHjey-os/maxresdefault.jpg', title: 'মহাবন্যার তাণ্ডব! গোপাল ভার', link: 'https://youtu.be/ho8yHjey-os?si=W0vHkqy9Su8ErOfh' },
+        { id: 12, img: 'https://picsum.photos/800/450?2', title: 'Post 2', link: 'https://youtu.be/ho8yHjey-os?si=W0vHkqy9Su8ErOfh' },
+        { id: 13, img: 'https://img.youtube.com/vi/ho8yHjey-os/maxresdefault.jpg', title: 'মহাবন্যার তাণ্ডব! গোপাল ভার', link: 'https://youtu.be/ho8yHjey-os?si=W0vHkqy9Su8ErOfh' },
+        { id: 14, img: 'https://picsum.photos/800/450?2', title: 'Post 2', link: 'https://youtu.be/ho8yHjey-os?si=W0vHkqy9Su8ErOfh' },
+        { id: 15, img: 'https://img.youtube.com/vi/ho8yHjey-os/maxresdefault.jpg', title: 'মহাবন্যার তাণ্ডব! গোপাল ভার', link: 'https://youtu.be/ho8yHjey-os?si=W0vHkqy9Su8ErOfh' },
+        { id: 16, img: 'https://picsum.photos/800/450?2', title: 'Post 2', link: 'https://youtu.be/ho8yHjey-os?si=W0vHkqy9Su8ErOfh' },
+        { id: 17, img: 'https://img.youtube.com/vi/ho8yHjey-os/maxresdefault.jpg', title: 'মহাবন্যার তাণ্ডব! গোপাল ভার', link: 'https://youtu.be/ho8yHjey-os?si=W0vHkqy9Su8ErOfh' },
+        { id: 18, img: 'https://picsum.photos/800/450?2', title: 'Post 2', link: 'https://youtu.be/ho8yHjey-os?si=W0vHkqy9Su8ErOfh' },
+        { id: 19, img: 'https://img.youtube.com/vi/ho8yHjey-os/maxresdefault.jpg', title: 'মহাবন্যার তাণ্ডব! গোপাল ভার', link: 'https://youtu.be/ho8yHjey-os?si=W0vHkqy9Su8ErOfh' },
+        { id: 20, img: 'https://picsum.photos/800/450?2', title: 'Post 2', link: 'https://youtu.be/ho8yHjey-os?si=W0vHkqy9Su8ErOfh' },
+        { id: 21, img: 'https://img.youtube.com/vi/ho8yHjey-os/maxresdefault.jpg', title: 'মহাবন্যার তাণ্ডব! গোপাল ভার', link: 'https://youtu.be/ho8yHjey-os?si=W0vHkqy9Su8ErOfh' },
+        { id: 22, img: 'https://picsum.photos/800/450?2', title: 'Post 2', link: 'https://youtu.be/ho8yHjey-os?si=W0vHkqy9Su8ErOfh' },
+        { id: 23, img: 'https://img.youtube.com/vi/ho8yHjey-os/maxresdefault.jpg', title: 'মহাবন্যার তাণ্ডব! গোপাল ভার', link: 'https://youtu.be/ho8yHjey-os?si=W0vHkqy9Su8ErOfh' },
+        { id: 24, img: 'https://picsum.photos/800/450?2', title: 'Post 2', link: 'https://youtu.be/ho8yHjey-os?si=W0vHkqy9Su8ErOfh' },
+        { id: 25, img: 'https://img.youtube.com/vi/ho8yHjey-os/maxresdefault.jpg', title: 'মহাবন্যার তাণ্ডব! গোপাল ভার', link: 'https://youtu.be/ho8yHjey-os?si=W0vHkqy9Su8ErOfh' },
+        { id: 26, img: 'https://picsum.photos/800/450?2', title: 'Post 2', link: 'https://www.youtube.com' },
+        // ... more posts
+    ];
+
+    let globalClicks = JSON.parse(localStorage.getItem('globalClicks')) || {};
+    let userHistory = JSON.parse(localStorage.getItem('userHistory')) || [];
+    let currentActivePost = null;
+
+    function renderPosts() {
+        const container = document.getElementById('post-container');
+        container.innerHTML = '';
+        posts.sort((a, b) => (globalClicks[b.id] || 0) - (globalClicks[a.id] || 0));
+        let top20 = posts.slice(0, 20);
+
+        top20.forEach(post => {
+            const clicks = globalClicks[post.id] || 0;
+            container.innerHTML += `
+                <div class="grid-item" onclick="handlePostClick(${post.id}, '${post.img}', '${post.title}', '${post.link}')">
+                    <div class="img-thumb"><img src="${post.img}" loading="lazy"></div>
+                    <p>${post.title}</p>
+                    <span class="count-badge">${clicks} views</span>
+                </div>
+            `;
+        });
+    }
+
+    function handlePostClick(id, img, title, link) {
+        if (!userHistory.includes(id)) {
+            globalClicks[id] = (globalClicks[id] || 0) + 1;
+            userHistory.push(id);
+            localStorage.setItem('globalClicks', JSON.stringify(globalClicks));
+            localStorage.setItem('userHistory', JSON.stringify(userHistory));
+        }
+
+        currentActivePost = { title, link };
+        document.getElementById('view-img').src = img;
+        document.getElementById('view-title').innerText = title;
+
+        let cleanLink = link.replace(/^https?:\/\//, "");
+        let chromeLink = `intent://${cleanLink}#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=${encodeURIComponent(link)};end`;
+        
+        document.getElementById('view-link').href = chromeLink;
+
+        document.getElementById('display-area').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        renderPosts();
+    }
+
+    function socialShare(platform) {
+        if (!currentActivePost) return;
+        
+        const { title } = currentActivePost;
+        const finalMessage = `${title}\n\n👉 Click here: ${MY_SHARE_LINK}`;
+
+        if (platform === 'wa') {
+            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(finalMessage)}`, '_blank');
+        } 
+        else if (platform === 'msgr') {
+            window.location.href = `fb-messenger://share/?link=${encodeURIComponent(MY_SHARE_LINK)}&quote=${encodeURIComponent(title)}`;
+            setTimeout(() => window.open(`https://www.facebook.com/dialog/send?link=${encodeURIComponent(MY_SHARE_LINK)}&app_id=123456789&redirect_uri=${encodeURIComponent(MY_SHARE_LINK)}`, '_blank'), 600);
+        } 
+        else if (platform === 'cp') {
+            navigator.clipboard.writeText(finalMessage).then(() => alert("Title & Your Link Copied!"));
+        }
+    }
+
+    function searchPosts() {
+        let term = document.getElementById('search').value.toLowerCase();
+        let items = document.getElementsByClassName('grid-item');
+        for (let item of items) {
+            item.style.display = item.innerText.toLowerCase().includes(term) ? "block" : "none";
+        }
+    }
+
+    renderPosts();
+</script>
+</body>
+  </html>
