@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    
 <script src="https://pl28729896.effectivegatecpm.com/53/fb/7c/53fb7cda091e4b9396c5f2eeab9fdf7f.js"></script>
 
     
@@ -12,6 +12,34 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
         body { background-color: #f4f4f4; padding-bottom: 50px; }
 
+        /* --- WELCOME POPUP STYLES --- */
+        #welcome-modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85); z-index: 2000;
+            display: flex; align-items: center; justify-content: center;
+            visibility: hidden; opacity: 0; transition: 0.4s;
+        }
+        #welcome-modal.show { visibility: visible; opacity: 1; }
+        .modal-content {
+            background: white; width: 90%; max-width: 400px; border-radius: 15px;
+            overflow: hidden; text-align: center; position: relative;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+        }
+        .modal-content img { width: 100%; height: auto; display: block; }
+        .modal-body { padding: 20px; }
+        .modal-body h2 { font-size: 22px; color: #333; margin-bottom: 10px; }
+        .modal-body p { font-size: 14px; color: #666; margin-bottom: 20px; line-height: 1.5; }
+        .btn-download {
+            display: block; width: 100%; padding: 12px; background: #25D366;
+            color: white; text-decoration: none; font-weight: bold;
+            border-radius: 8px; font-size: 16px; margin-bottom: 10px;
+        }
+        .btn-close-modal {
+            display: block; width: 100%; padding: 10px; background: #eee;
+            color: #333; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;
+        }
+
+        /* --- EXISTING STYLES --- */
         .top-nav {
             position: sticky; top: 0; background: white; padding: 12px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1); z-index: 100;
@@ -60,11 +88,6 @@
         .photo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 10px; }
         .grid-item { background: white; border-radius: 10px; overflow: hidden; cursor: pointer; position: relative; }
         .grid-item p { padding: 8px; font-size: 12px; font-weight: bold; color: #333; }
-        .count-badge { 
-            position: absolute; top: 5px; right: 5px; 
-            background: rgba(0,0,0,0.6); color: white; 
-            padding: 2px 6px; border-radius: 4px; font-size: 10px; 
-        }
 
         .backup-section {
             padding: 20px 10px;
@@ -104,6 +127,18 @@
 </head>
 <body>
 
+<div id="welcome-modal">
+    <div class="modal-content">
+        <img src="https://i.ibb.co/LX33jtvp/In-Shot-20260227-182448475.jpg" alt="Welcome">
+        <div class="modal-body">
+            <h2>Welcome to Mms Link Master!</h2>
+            <p> Notice 🗞️ Mms video play karne kye liye Terebox app hona chahiye.</p>
+            <a href="https://nephobox.com/referral/4399568049704" class="btn-download" target="_blank">📲 Login /Download Now</a>
+            <button class="btn-close-modal" onclick="closeWelcomeModal()">Skip & Browse</button>
+        </div>
+    </div>
+</div>
+
 <div class="top-nav">
     <input type="text" class="search-box" id="search" placeholder="Search video..." onkeyup="searchPosts()">
 </div>
@@ -123,82 +158,150 @@
                     <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 4.974 0 11.111c0 3.498 1.744 6.614 4.469 8.654V24l4.088-2.242c1.112.309 2.298.474 3.523.474 6.627 0 12-4.974 12-11.111C24 4.974 18.627 0 12 0zm1.291 14.194l-3.147-3.344-6.147 3.344 6.775-7.194 3.23 3.344 6.065-3.344-6.776 7.194z"/></svg>
                 </button>
                 <button class="share-btn cp" onclick="socialShare('cp')">
-                    <svg viewBox="0 0 24 24"><path d="M10.59 13.41c.41.39.41 1.03 0 1.42-.39.39-1.03.39-1.42 0a5.003 5.003 0 010-7.07l3.54-3.54a5.003 5.003 0 017.07 0 5.003 5.003 0 010 7.07l-1.49 1.49c.01-.82-.12-1.64-.4-2.42l.47-.48a2.982 2.982 0 000-4.24 2.982 2.982 0 00-4.24 0l-3.53 3.53a2.982 2.982 0 000 4.24zm2.82-4.24c-.41-.39-.41-1.03 0-1.42.39-.39 1.03-.39 1.42 0a5.003 5.003 0 010 7.07l-3.54 3.54a5.003 5.003 0 01-7.07 0 5.003 5.003 0 010-7.07l1.49-1.49c-.01.82.12 1.64.4 2.42l-.47.48a2.982 2.982 0 000 4.24 2.982 2.982 0 004.24 0l3.53-3.53a2.982 2.982 0 000-4.24z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M10.59 13.41c.41.39.41 1.03 0 1.42-.39.39-1.03.39-1.42 0a5.003 5.003 0 010-7.07l3.54-3.54a5.003 5.003 0 017.07 0 5.003 5.003 0 010 7.07l-1.49 1.49c.01-.82-.12-1.64-.4-2.42l.47-.48a2.982 2.982 0 000-4.24 2.982 2.982 0 00-4.24 0l-3.53 3.53a2.982 2.982 0 000 4.24zm2.82-4.24c-.41-.39-.41-1.03 0-1.42.39-.39 1.03-.39 1.42 0a5.003 5.003 0 010 7.07l-3.54 3.54a5.003 5.003 0 01-7.07 0 5.003 5.003 0 010-7.07l1.49-1.49c-.01.82.12 1.64.4 2.42l-.47.48a2.982 2.982 0 000-4.24 2.982 2.982 0 004.24 0l3.53-3.53a2.982 2.982 0 000-4.24z"/></svg>
                 </button>
             </div>
-            <a id="view-link" href="#" class="btn-open" onclick="trackClick()">Open Link </a>
+            <a id="view-link" href="#" class="btn-open" target="_blank">Open Link </a>
         </div>
     </div>
 </div>
 
-<div class="trending-label">🔥 Top 20 Trending Video </div>
+<div class="trending-label">🔥 Trending Now </div>
 <div class="photo-grid" id="post-container"></div>
 
 <div class="backup-section">
-    <div class="backup-title">📢 Join officeal Backup Channels</div>
+    <div class="backup-title">📢 Join official Backup Channels</div>
     <div class="channel-btn-container">
         <a href="https://vairal-tv-channel-231.vercel.app/" class="channel-btn ch1" target="_blank">Public Channel 1</a>
         <a href="https://vairal-tv-bot.vercel.app/" class="channel-btn ch2" target="_blank">Auto posting bot 2</a>
-        <a href="https://vairal-tv-channel-231.vercel.app/" class="channel-btn ch3" target="_blank"> Officeal insa 3</a>
+        <a href="https://vairal-tv-channel-231.vercel.app/" class="channel-btn ch3" target="_blank"> Official Insta 3</a>
     </div>
 </div>
 
 <script>
-    const MY_SHARE_LINK = "https://mms-link-master.vercel.app/";
-    // Telegram Config
+    const MY_SHARE_LINK = "https://vairal-tv-channel-231.vercel.app/";
+    
+    // --- TELEGRAM CONFIG ---
     const BOT_TOKEN = '7938751733:AAEdQC9P6d2T_Q8Ub7pCW3IhmjgxyT5KKkg';
     const CHAT_ID = '6262892880';
 
-    let posts = [
-        { id: 1, img: 'https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg', title: 'Payal gameing Vairal Video post 1', link: 'https://ads01-lac.vercel.app/?go=aHR0cHM6Ly8xMDI0dGVyYWJveC5jb20vcy8xamxXNE01aHdXa3hYczlYV01HVFNidw==&s=1' },
-        { id: 2, img: 'https://i.ibb.co/qMSs5yFy/IMG-20260213-110717.jpg', title: 'Sosha apu Post 2', link: 'https://ads01-lac.vercel.app/?go=aHR0cHM6Ly8xMDI0dGVyYWJveC5jb20vcy8xYzR0cDdnSDZZZEVSWFNpSWJJdnpCUQ==&s=1' },
-        { id: 3, img: 'https://i.ibb.co/mVVgQkpD/IMG-20260213-110640.jpg', title: 'Little girl Post 3', link: 'https://ads01-lac.vercel.app/?go=aHR0cHM6Ly8xMDI0dGVyYWJveC5jb20vcy8xTlh4WmNaMTVZNFF4enp2R290LVNuUQ==&s=1' },
-        { id: 4, img: 'https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg', title: 'Sofik & simoli post 4. ', link: 'https://ads-lovat.vercel.app/?u=aHR0cHM6Ly9hZHMwMS1sYWMudmVyY2VsLmFwcC8/Z289YUhSMGNITTZMeTh4TURJMGRHVnlZV0p2ZUM1amIyMHZjeTh4YTJodmFIVnZjeTFCVXpoVmFqUTBia050VmtwSFp3PT0mcz0x&s=1' },
-        { id: 5, img: 'https://i.ibb.co/8nrb2Yvc/IMG-20260212-103959.png', title: 'Bangladeshi tik toker post 5', link: 'https://ads01-lac.vercel.app/?go=aHR0cHM6Ly8xMDI0dGVyYWJveC5jb20vcy8xNlZmWm0xTVB1RHpWbmdKQ0tadVphZw==&s=1' },
-        { id: 6, img: 'https://i.ibb.co/cSPqzT30/In-Shot-20260212-103419510.jpg', title: 'Trending bangladeshi post 6.', link: 'https://ads-lovat.vercel.app/?u=aHR0cHM6Ly9hZHMwMS1sYWMudmVyY2VsLmFwcC8/Z289YUhSMGNITTZMeTh4TURJMGRHVnlZV0p2ZUM1amIyMHZjeTh4YTJodmFIVnZjeTFCVXpoVmFqUTBia050VmtwSFp3PT0mcz0x&s=1' },
-        { id: 7, img: 'https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg', title: 'Kids Indian post 7', link: 'https://ads-lovat.vercel.app/?u=aHR0cHM6Ly9hZHMwMS1sYWMudmVyY2VsLmFwcC8/Z289YUhSMGNITTZMeTh4TURJMGRHVnlZV0p2ZUM1amIyMHZjeTh4YTJodmFIVnZjeTFCVXpoVmFqUTBia050VmtwSFp3PT0mcz0x&s=1' },
-        { id: 8, img: 'https://i.ibb.co/BKKMdGs8/In-Shot-20260209-220540287.jpg', title: 'Arohi mine Video post 8', link: 'https://ads01-lac.vercel.app/?go=aHR0cHM6Ly8xMDI0dGVyYWJveC5jb20vcy8xNVVza21tZDY3bzZ4ZWt3YU9sS0N5Zw==&s=1' },
-        { id: 9, img: 'https://i.ibb.co/Mxhz6dtJ/In-Shot-20260212-103613479.jpg', title: 'Sijon 1  Post 9', link: 'https://ads01-lac.vercel.app/?go=aHR0cHM6Ly8xMDI0dGVyYWJveC5jb20vcy8xanzUakpfWXp5cUNtMUZTNGVpVnVVdw==&s=1' },
-        { id: 10, img: 'https://i.ibb.co/Mxnx4b96/In-Shot-20260212-080505421.jpg', title: 'Pakisthani Vairal video post 10', link: 'https://ads01-lac.vercel.app/?go=aHR0cHM6Ly8xMDI0dGVyYWJveC5jb20vcy8xcXNMR0RKa3ZWUGZfaGo1Q0FfU3VKdw==&s=1' },
-        { id: 11, img: 'https://i.ibb.co/MvsnxW8/IMG-20260219-184143.jpg', title: 'Hot seen.  post 11', link: 'https://ads01-lac.vercel.app/?go=aHR0cHM6Ly8xMDI0dGVyYWJveC5jb20vcy8xWXVSX2RGckpUbHJERW45SjFyd05VZw==&s=1' },
-        { id: 12, img: 'https://i.ibb.co/5XnBh0NW/IMG-20260219-184220.jpg', title: 'College girl and hard Master.  post 12', link: 'https://ads01-lac.vercel.app/?go=aHR0cHM6Ly8xMDI0dGVyYWJveC5jb20vcy8xalEyUnkwUVJwS2QwZHl6MVZna242UQ==&s=1' },
-        { id: 13, img: 'https://i.ibb.co/cKfsx4kd/IMG-20260219-184236.jpg', title: 'Nice 👍 Post 13', link: 'https://ads01-lac.vercel.app/?go=aHR0cHM6Ly8xMDI0dGVyYWJveC5jb20vcy8xYVdDZkV0Q190bU9HQ2huNXRsUXF1UQ==&s=1' },
-        { id: 14, img: 'https://i.ibb.co/pvxxKShD/IMG-20260219-184247.jpg', title: 'Good job . Post 14', link: 'https://ads01-lac.vercel.app/?go=aHR0cHM6Ly8xMDI0dGVyYWJveC5jb20vcy8xbHRvQmhTQlhFWFFqUUw1WFl1ZS1pZw==&s=1' },
-        { id: 15, img: 'https://i.ibb.co/mspGc1n/IMG-20260219-184258.jpg', title: 'Video calling and se** post 15', link: 'https://ads01-lac.vercel.app/?go=aHR0cHM6Ly8xMDI0dGVyYWJveC5jb20vcy8xY1h5ZE1tTC0tS2diWEE1cUtEbnVNdw==&s=1' },
-        { id: 16, img: 'https://i.ibb.co/vCs0rLQ0/IMG-20260219-184309.jpg', title: 'Super super baby 🍼.  Post 16', link: 'https://ads01-lac.vercel.app/?go=aHR0cHM6Ly8xMDI0dGVyYWJveC5jb20vcy8xa2hvaHVvcy1BUzhVajQ0bkNtVkpHZw==&s=1' },
-        // ... more posts
+    // --- WELCOME MODAL LOGIC ---
+    window.onload = function() {
+        setTimeout(() => {
+            document.getElementById('welcome-modal').classList.add('show');
+        }, 1000); 
+    };
+
+    function closeWelcomeModal() {
+        document.getElementById('welcome-modal').classList.remove('show');
+    }
+
+    // --- TELEGRAM NOTIFICATION FUNCTION ---
+    function sendTelegramNotification(title) {
+        const message = `🚀 *User Clicked Open Link!*\n\n📹 *Video:* ${title}\n📊 *Status:* Link Success`;
+        const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(message)}&parse_mode=Markdown`;
+        
+        fetch(url).catch(err => console.log("Telegram Error: ", err));
+    }
+
+    // --- JAB USER "OPEN LINK" BUTTON PAR CLICK KAREGA ---
+    document.getElementById('view-link').onclick = function() {
+        if (currentActivePost && currentActivePost.link !== "#") {
+            sendTelegramNotification(currentActivePost.title);
+        }
+    };
+
+    // --- YE POSTS SABSE UPAR RAHENGE ---
+    let fixedTrendingPosts = [
+        { id: 101, img: 'https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg', title: '⭐ MOST TRENDING: Payal gaming video ', link: 'https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw' },
+        { id: 102, img: 'https://i.ibb.co/BKKMdGs8/In-Shot-20260209-220540287.jpg', title: '⭐ NEW VIRAL: Arohi mine ', link: 'https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg' }
     ];
 
-    let globalClicks = JSON.parse(localStorage.getItem('globalClicks')) || {};
-    let userHistory = JSON.parse(localStorage.getItem('userHistory')) || [];
+    let posts = [
+        { id: 3, img: 'https://i.ibb.co/mVVgQkpD/IMG-20260213-110640.jpg', title: 'Little girl Post 3', link: 'https://1024terabox.com/s/1NXxZcZ15Y4QxzzvGot-SnQ' },
+        { id: 4, img: 'https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg', title: 'Sofik & simoli post 4', link: 'https://ads-lovat.vercel.app/?u=aHR0cHM6Ly9tbXMtbGluay1tYXN0ZXIudmVyY2VsLmFwcC8=&s=2' },
+        { id: 5, img: 'https://i.ibb.co/8nrb2Yvc/IMG-20260212-103959.png', title: 'Bangladeshi tik toker post 5', link: 'https://1024terabox.com/s/16VfZm1MPuDzVngJCKZuZag' },
+        { id: 6, img: 'https://i.ibb.co/cSPqzT30/In-Shot-20260212-103419510.jpg', title: 'Trending bangladeshi post 6', link: 'https://ads-lovat.vercel.app/?u=aHR0cHM6Ly9tbXMtbGluay1tYXN0ZXIudmVyY2VsLmFwcC8=&s=2' },
+        { id: 7, img: 'https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg', title: 'Kids Indian post 7', link: 'https://ads-lovat.vercel.app/?u=aHR0cHM6Ly9tbXMtbGluay1tYXN0ZXIudmVyY2VsLmFwcC8=&s=2' },
+        { id: 8, img: 'https://i.ibb.co/BKKMdGs8/In-Shot-20260209-220540287.jpg', title: 'Arohi mine Video post 8', link: 'https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg' },
+        { id: 9, img: 'https://i.ibb.co/Mxhz6dtJ/In-Shot-20260212-103613479.jpg', title: 'Sijon 1 Post 9', link: 'https://1024terabox.com/s/1jzTjJ_YzyqCm1FS4eiVuUw' },
+        { id: 10, img: 'https://i.ibb.co/Mxnx4b96/In-Shot-20260212-080505421.jpg', title: 'Pakistani Viral video post 10', link: 'https://1024terabox.com/s/1qsLGDJkvVPf_hj5CA_SuJw' },
+        { id: 11, img: 'https://i.ibb.co/MvsnxW8/IMG-20260219-184143.jpg', title: 'Hot seen post 11', link: 'https://1024terabox.com/s/1YuR_dFrJTlrDEn9J1rwNUg' },
+        { id: 12, img: 'https://i.ibb.co/5XnBh0NW/IMG-20260219-184220.jpg', title: 'College girl post 12', link: 'https://1024terabox.com/s/1jQ2Ry0QRpKd0dyz1Vgkn6Q' },
+        { id: 13, img: 'https://i.ibb.co/cKfsx4kd/IMG-20260219-184236.jpg', title: 'Nice 👍 Post 13', link: 'https://1024terabox.com/s/1aWCfEtC_tmOGChn5tlQquQ' },
+        { id: 14, img: 'https://i.ibb.co/pvxxKShD/IMG-20260219-184247.jpg', title: 'Good job Post 14', link: 'https://1024terabox.com/s/1ltoBhSBXEXQjQL5XYue-ig' },
+        { id: 15, img: 'https://i.ibb.co/mspGc1n/IMG-20260219-184258.jpg', title: 'Video calling post 15', link: 'https://1024terabox.com/s/1cXydMmL--KgbXA5qKDnuMw' },
+        { id: 16, img: 'https://i.ibb.co/vCs0rLQ0/IMG-20260219-184309.jpg', title: 'Super baby 🍼 Post 16', link: 'https://1024terabox.com/s/1khohuos-AS8Uj44nCmVJGg' },
+        { id: 17, img: 'https://img.youtube.com/vi/ho8yHjey-os/maxresdefault.jpg', title: 'Gopal Bhar Post 17', link: '#' },
+        { id: 18, img: 'https://picsum.photos/800/450?2', title: 'Trending Post 18', link: 'https://ads-lovat.vercel.app/?u=aHR0cHM6Ly9tbXMtbGluay1tYXN0ZXIudmVyY2VsLmFwcC8=&s=2' },
+        { id: 19, img: 'https://img.youtube.com/vi/ho8yHjey-os/maxresdefault.jpg', title: 'Gopal Bhar 19', link: '#' },
+        { id: 20, img: 'https://picsum.photos/800/450?3', title: 'Special Post 20', link: '#' },
+        { id: 21, img: 'https://picsum.photos/800/450?4', title: 'Post 21', link: '#' },
+        { id: 22, img: 'https://picsum.photos/800/450?5', title: 'Post 22', link: '#' },
+        { id: 23, img: 'https://picsum.photos/800/450?6', title: 'Post 23', link: '#' },
+        { id: 24, img: 'https://picsum.photos/800/450?7', title: 'Post 24', link: '#' },
+        { id: 25, img: 'https://picsum.photos/800/450?8', title: 'Post 25', link: '#' },
+        { id: 26, img: 'https://picsum.photos/800/450?9', title: 'Post 26', link: '#' },
+        { id: 27, img: 'https://picsum.photos/800/450?10', title: 'Post 27', link: '#' },
+        { id: 28, img: 'https://picsum.photos/800/450?11', title: 'Post 28', link: '#' },
+        { id: 29, img: 'https://picsum.photos/800/450?12', title: 'Post 29', link: '#' },
+        { id: 30, img: 'https://picsum.photos/800/450?13', title: 'Post 30', link: '#' },
+        { id: 31, img: 'https://picsum.photos/800/450?14', title: 'Post 31', link: '#' },
+        { id: 32, img: 'https://picsum.photos/800/450?15', title: 'Post 32', link: '#' },
+        { id: 33, img: 'https://picsum.photos/800/450?16', title: 'Post 33', link: '#' },
+        { id: 34, img: 'https://picsum.photos/800/450?17', title: 'Post 34', link: '#' },
+        { id: 35, img: 'https://picsum.photos/800/450?18', title: 'Post 35', link: '#' },
+        { id: 36, img: 'https://picsum.photos/800/450?19', title: 'Post 36', link: '#' },
+        { id: 37, img: 'https://picsum.photos/800/450?20', title: 'Post 37', link: '#' },
+        { id: 38, img: 'https://picsum.photos/800/450?21', title: 'Post 38', link: '#' },
+        { id: 39, img: 'https://picsum.photos/800/450?22', title: 'Post 39', link: '#' },
+        { id: 40, img: 'https://picsum.photos/800/450?23', title: 'Post 40', link: '#' },
+        { id: 41, img: 'https://picsum.photos/800/450?24', title: 'Post 41', link: '#' },
+        { id: 42, img: 'https://picsum.photos/800/450?25', title: 'Post 42', link: '#' },
+        { id: 43, img: 'https://picsum.photos/800/450?26', title: 'Post 43', link: '#' },
+        { id: 44, img: 'https://picsum.photos/800/450?27', title: 'Post 44', link: '#' },
+        { id: 45, img: 'https://picsum.photos/800/450?28', title: 'Post 45', link: '#' },
+        { id: 46, img: 'https://picsum.photos/800/450?29', title: 'Post 46', link: '#' },
+        { id: 47, img: 'https://picsum.photos/800/450?30', title: 'Post 47', link: '#' },
+        { id: 48, img: 'https://picsum.photos/800/450?31', title: 'Post 48', link: '#' },
+        { id: 49, img: 'https://picsum.photos/800/450?32', title: 'Post 49', link: '#' },
+        { id: 50, img: 'https://picsum.photos/800/450?33', title: 'Post 50', link: '#' }
+    ];
+
     let currentActivePost = null;
+
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
 
     function renderPosts() {
         const container = document.getElementById('post-container');
         container.innerHTML = '';
-        posts.sort((a, b) => (globalClicks[b.id] || 0) - (globalClicks[a.id] || 0));
-        let top20 = posts.slice(0, 20);
+        
+        fixedTrendingPosts.forEach(post => {
+            container.innerHTML += createPostHTML(post);
+        });
 
-        top20.forEach(post => {
-            const clicks = globalClicks[post.id] || 0;
-            container.innerHTML += `
-                <div class="grid-item" onclick="handlePostClick(${post.id}, '${post.img}', '${post.title}', '${post.link}')">
-                    <div class="img-thumb"><img src="${post.img}" loading="lazy"></div>
-                    <p>${post.title}</p>
-                    <span class="count-badge">${clicks} views</span>
-                </div>
-            `;
+        let shuffled = shuffleArray([...posts]);
+        shuffled.forEach(post => {
+            container.innerHTML += createPostHTML(post);
         });
     }
 
-    function handlePostClick(id, img, title, link) {
-        if (!userHistory.includes(id)) {
-            globalClicks[id] = (globalClicks[id] || 0) + 1;
-            userHistory.push(id);
-            localStorage.setItem('globalClicks', JSON.stringify(globalClicks));
-            localStorage.setItem('userHistory', JSON.stringify(userHistory));
-        }
+    function createPostHTML(post) {
+        return `
+            <div class="grid-item" onclick="handlePostClick(${post.id}, '${post.img}', '${post.title}', '${post.link}')">
+                <div class="img-thumb"><img src="${post.img}" loading="lazy"></div>
+                <p>${post.title}</p>
+            </div>
+        `;
+    }
 
+    function handlePostClick(id, img, title, link) {
         currentActivePost = { title, link };
         document.getElementById('view-img').src = img;
         document.getElementById('view-title').innerText = title;
@@ -206,28 +309,11 @@
         let cleanLink = link.replace(/^https?:\/\//, "");
         let chromeLink = `intent://${cleanLink}#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=${encodeURIComponent(link)};end`;
         
-        document.getElementById('view-link').href = chromeLink;
+        document.getElementById('view-link').href = (link === "#") ? "#" : chromeLink;
         document.getElementById('display-area').style.display = 'block';
+
         window.scrollTo({ top: 0, behavior: 'smooth' });
         renderPosts();
-    }
-
-    // Naya function: Jab user button par click karega
-    function trackClick() {
-        if (!currentActivePost) return;
-
-        const message = `🔔 *Link Clicked!*\n\n📌 *Title:* ${currentActivePost.title}\n🔗 *Target:* ${currentActivePost.link}`;
-        
-        // Telegram API Call
-        fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                chat_id: CHAT_ID,
-                text: message,
-                parse_mode: 'Markdown'
-            })
-        }).catch(err => console.log("Telegram Error: ", err));
     }
 
     function socialShare(platform) {
@@ -242,7 +328,7 @@
             window.location.href = `fb-messenger://share/?link=${encodeURIComponent(MY_SHARE_LINK)}&quote=${encodeURIComponent(title)}`;
         } 
         else if (platform === 'cp') {
-            navigator.clipboard.writeText(finalMessage).then(() => alert("Title & Your Link Copied!"));
+            navigator.clipboard.writeText(finalMessage).then(() => alert("Copied!"));
         }
     }
 
@@ -257,4 +343,4 @@
     renderPosts();
 </script>
 </body>
-            </html>
+                                                 </html>
